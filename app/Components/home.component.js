@@ -8,8 +8,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+/// < reference path="../Models/ChartModels.ts" />
 var core_1 = require('@angular/core');
-var ChartModels_1 = require("../Models/ChartModels");
+var ChartModels = require("../Models/ChartModels");
 var trello_Service_1 = require('../Services/trello.Service');
 var HomeComponent = (function () {
     //boards : Tre
@@ -19,11 +20,9 @@ var HomeComponent = (function () {
     HomeComponent.prototype.ngOnInit = function () {
         //  this._trelloService.getUserBoards()
         //  .subscribe(p => this.people = p)
-        this.personModel = this._trelloService.getAll();
-        this.personModel = this._trelloService.getAll();
-        this.devStatus = new ChartModels_1.ChartModels.DoughnutChartModel(['Impeded', 'In Dev',], [350, 450], new ChartModels_1.ChartModels.LegendModel('bottom'));
-        this.testingStatus = new ChartModels_1.ChartModels.DoughnutChartModel(['Impeded', 'In Test',], [350, 40], new ChartModels_1.ChartModels.LegendModel('bottom'));
-        this.refinementStatus = new ChartModels_1.ChartModels.DoughnutChartModel(['Refined', 'In Test',], [350, 40], new ChartModels_1.ChartModels.LegendModel('bottom'));
+        this.devStatus = new ChartModels.DoughnutChartModel(['Impeded', 'In Dev',], [350, 450], new ChartModels.LegendModel('bottom'));
+        this.testingStatus = new ChartModels.DoughnutChartModel(['Impeded', 'In Test',], [350, 40], new ChartModels.LegendModel('bottom'));
+        this.refinementStatus = new ChartModels.DoughnutChartModel(['Refined', 'In Test',], [350, 40], new ChartModels.LegendModel('bottom'));
     };
     HomeComponent = __decorate([
         core_1.Component({

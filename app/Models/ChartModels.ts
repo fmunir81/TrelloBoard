@@ -1,4 +1,5 @@
-export module ChartModels {
+
+  //dfsjhfdkjshfkdsh
   export class DoughnutChartModel {
     public ChartLabels: string[];
     public ChartData: number[];
@@ -16,6 +17,8 @@ export module ChartModels {
   export class LegendModel {
     constructor(public position: string) {
     }
-
   }
+export namespace Shapes {
+    export class Triangle { /* ... */ }
+    export class Square { /* ... */ }
 }
