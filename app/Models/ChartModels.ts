@@ -18,7 +18,3 @@
     constructor(public position: string) {
     }
   }
-export namespace Shapes {
-    export class Triangle { /* ... */ }
-    export class Square { /* ... */ }
-}

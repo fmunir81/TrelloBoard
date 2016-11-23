@@ -1,5 +1,5 @@
 
-export module TrelloApiModels {
+
     export class Board {
         name: string;
         id: string;
@@ -19,5 +19,3 @@ export module TrelloApiModels {
         boards: Board[];
         organizations: Organization[];
     }
-
-}

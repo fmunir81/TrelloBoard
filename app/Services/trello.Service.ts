@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { PersonModel } from '../Models/PersonModel';
-import { TrelloApiModels } from '../Models/TrelloAPIModels';
+import * as TrelloApiModels  from '../Models/TrelloAPIModels';
 import { Http, Response,Headers } from '@angular/http';
-import { Observable } from 'rxjs/Rx';
-
+import { Observable }     from 'rxjs/Observable';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/catch';
 const PEOPLE : PersonModel[] = [
       {id: 1, Name: 'Luke', LastName: 'Skywalker'},
       {id: 2, Name: 'Darth',LastName:'Vader'},
@@ -24,8 +25,10 @@ export class TrelloAPI{
       .map(this.mapBoards);
       return people$;
   }
-  mapBoards(response:Response): TrelloApiModels.RootObject{
-   return  new TrelloApiModels.RootObject(response.json().results);
+  mapBoards(response:Response): TrelloApiModels.Board[]{
+    var boards : TrelloApiModels.Board[] = response.json().boards;
+    return boards;
+  
 }
   getAll() : PersonModel[] {
     return PEOPLE.map(p => this.clone(p));

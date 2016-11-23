@@ -1,24 +1,21 @@
 "use strict";
-var TrelloApiModels;
-(function (TrelloApiModels) {
-    var Board = (function () {
-        function Board() {
-        }
-        return Board;
-    }());
-    TrelloApiModels.Board = Board;
-    var Organization = (function () {
-        function Organization() {
-        }
-        return Organization;
-    }());
-    TrelloApiModels.Organization = Organization;
-    var RootObject = (function () {
-        function RootObject(response) {
-            debugger;
-        }
-        return RootObject;
-    }());
-    TrelloApiModels.RootObject = RootObject;
-})(TrelloApiModels = exports.TrelloApiModels || (exports.TrelloApiModels = {}));
+var Board = (function () {
+    function Board() {
+    }
+    return Board;
+}());
+exports.Board = Board;
+var Organization = (function () {
+    function Organization() {
+    }
+    return Organization;
+}());
+exports.Organization = Organization;
+var RootObject = (function () {
+    function RootObject(response) {
+        debugger;
+    }
+    return RootObject;
+}());
+exports.RootObject = RootObject;
 //# sourceMappingURL=TrelloAPIModels.js.map

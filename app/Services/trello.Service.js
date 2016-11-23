@@ -9,8 +9,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var TrelloAPIModels_1 = require('../Models/TrelloAPIModels');
 var http_1 = require('@angular/http');
+require('rxjs/add/operator/map');
+require('rxjs/add/operator/catch');
 var PEOPLE = [
     { id: 1, Name: 'Luke', LastName: 'Skywalker' },
     { id: 2, Name: 'Darth', LastName: 'Vader' },
@@ -32,7 +33,8 @@ var TrelloAPI = (function () {
         return people$;
     };
     TrelloAPI.prototype.mapBoards = function (response) {
-        return new TrelloAPIModels_1.TrelloApiModels.RootObject(response.json().results);
+        var boards = response.json().boards;
+        return boards;
     };
     TrelloAPI.prototype.getAll = function () {
         var _this = this;

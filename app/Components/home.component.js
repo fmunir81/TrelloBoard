@@ -13,13 +13,13 @@ var core_1 = require('@angular/core');
 var ChartModels = require("../Models/ChartModels");
 var trello_Service_1 = require('../Services/trello.Service');
 var HomeComponent = (function () {
-    //boards : Tre
     function HomeComponent(_trelloService) {
         this._trelloService = _trelloService;
     }
     HomeComponent.prototype.ngOnInit = function () {
-        //  this._trelloService.getUserBoards()
-        //  .subscribe(p => this.people = p)
+        var _this = this;
+        this._trelloService.getUserBoards()
+            .subscribe(function (p) { return _this.boards = p; });
         this.devStatus = new ChartModels.DoughnutChartModel(['Impeded', 'In Dev',], [350, 450], new ChartModels.LegendModel('bottom'));
         this.testingStatus = new ChartModels.DoughnutChartModel(['Impeded', 'In Test',], [350, 40], new ChartModels.LegendModel('bottom'));
         this.refinementStatus = new ChartModels.DoughnutChartModel(['Refined', 'In Test',], [350, 40], new ChartModels.LegendModel('bottom'));
