@@ -1,0 +1,9 @@
+<div style="display: block">
+  <canvas baseChart 
+              [data]="model.ChartData"
+              [labels]="model.ChartLabels"
+              [chartType]="model.ChartType"
+              [legend]="model.Legend"
+              (chartHover)="chartHovered($event)"
+              (chartClick)="chartClicked($event)"></canvas>
+</div>
