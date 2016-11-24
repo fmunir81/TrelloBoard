@@ -11,19 +11,21 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var platform_browser_1 = require('@angular/platform-browser');
 var http_1 = require('@angular/http');
-var home_component_1 = require('./Components/home.component');
+var router_1 = require('@angular/router');
+var index_component_1 = require('./Components/index.component');
+var dashboard_component_1 = require('./Components/dashboard.component');
+var app_component_1 = require('./Components/app.component');
 var ng2_charts_1 = require('ng2-charts/ng2-charts');
-//import { CounterComponent } from './Components/Counter.component';
-//import { TestComponent } from './Components/test.component';
 var doughnutChart_component_1 = require('./Components/Charts/doughnutChart.component');
+var app_routes_1 = require('./app.routes');
 var AppModule = (function () {
     function AppModule() {
     }
     AppModule = __decorate([
         core_1.NgModule({
-            imports: [platform_browser_1.BrowserModule, ng2_charts_1.ChartsModule, http_1.HttpModule],
-            declarations: [home_component_1.HomeComponent, doughnutChart_component_1.DoughnutChartComponent],
-            bootstrap: [home_component_1.HomeComponent]
+            imports: [platform_browser_1.BrowserModule, ng2_charts_1.ChartsModule, http_1.HttpModule, router_1.RouterModule.forRoot(app_routes_1.AppRoutes)],
+            declarations: [index_component_1.IndexComponent, doughnutChart_component_1.DoughnutChartComponent, app_component_1.AppComponent, dashboard_component_1.DashBoardComponent],
+            bootstrap: [app_component_1.AppComponent]
         }), 
         __metadata('design:paramtypes', [])
     ], AppModule);

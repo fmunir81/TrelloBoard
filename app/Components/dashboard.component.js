@@ -12,11 +12,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var ChartModels = require("../Models/ChartModels");
 var trello_Service_1 = require('../Services/trello.Service');
-var HomeComponent = (function () {
-    function HomeComponent(_trelloService) {
+var DashBoardComponent = (function () {
+    function DashBoardComponent(_trelloService) {
         this._trelloService = _trelloService;
     }
-    HomeComponent.prototype.ngOnInit = function () {
+    DashBoardComponent.prototype.ngOnInit = function () {
         var _this = this;
         this._trelloService.getUserBoards()
             .subscribe(function (p) { return _this.boards = p; });
@@ -24,15 +24,15 @@ var HomeComponent = (function () {
         this.testingStatus = new ChartModels.DoughnutChartModel(['Impeded', 'In Test',], [350, 40], new ChartModels.LegendModel('bottom'));
         this.refinementStatus = new ChartModels.DoughnutChartModel(['Refined', 'In Test',], [350, 40], new ChartModels.LegendModel('bottom'));
     };
-    HomeComponent = __decorate([
+    DashBoardComponent = __decorate([
         core_1.Component({
             selector: 'trello-app',
-            templateUrl: './app/Views/Home.html',
+            templateUrl: './app/Views/dashboard.html',
             providers: [trello_Service_1.TrelloAPI]
         }), 
         __metadata('design:paramtypes', [trello_Service_1.TrelloAPI])
-    ], HomeComponent);
-    return HomeComponent;
+    ], DashBoardComponent);
+    return DashBoardComponent;
 }());
-exports.HomeComponent = HomeComponent;
-//# sourceMappingURL=home.component.js.map
+exports.DashBoardComponent = DashBoardComponent;
+//# sourceMappingURL=dashboard.component.js.map
