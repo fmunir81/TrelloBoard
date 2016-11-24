@@ -9,15 +9,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var TrelloApiModels = require('../Models/TrelloAPIModels');
 var http_1 = require('@angular/http');
 require('rxjs/add/operator/map');
 require('rxjs/add/operator/catch');
-var PEOPLE = [
-    { id: 1, Name: 'Luke', LastName: 'Skywalker' },
-    { id: 2, Name: 'Darth', LastName: 'Vader' },
-    { id: 3, Name: 'Han', LastName: 'Solo' },
-];
-//https://www.barbarianmeetscoding.com/blog/2016/04/02/getting-started-with-angular-2-step-by-step-6-consuming-real-data-with-http/
 var TrelloAPI = (function () {
     function TrelloAPI(http) {
         this.http = http;
@@ -27,27 +22,31 @@ var TrelloAPI = (function () {
     }
     TrelloAPI.prototype.getUserBoards = function () {
         var url = this.apiUrl + "members/me?fields=username&boards=all&board_fields=name&key=" + this.applicationKey + "&token=" + this.authToken;
-        var people$ = this.http
+        var boards$ = this.http
             .get(url, { headers: this.getHeaders() })
             .map(this.mapBoards);
-        return people$;
+        return boards$;
     };
     TrelloAPI.prototype.mapBoards = function (response) {
         var boards = response.json().boards;
         return boards;
     };
-    TrelloAPI.prototype.getAll = function () {
-        var _this = this;
-        return PEOPLE.map(function (p) { return _this.clone(p); });
+    TrelloAPI.prototype.getIFLabelsStats = function (boardId) {
+        var url = this.apiUrl + "boards/" + boardId + "/labels?key=" + this.applicationKey + "&token=" + this.authToken;
+        ;
+        var boards$ = this.http
+            .get(url, { headers: this.getHeaders() })
+            .map(this.mapIFLabels);
+        return boards$;
     };
-    TrelloAPI.prototype.get = function (id) {
-        return this.clone(PEOPLE.find(function (p) { return p.id === id; }));
-    };
-    TrelloAPI.prototype.save = function (person) {
-        var originalPerson = PEOPLE.find(function (p) { return p.id === person.id; });
-        if (originalPerson)
-            Object.assign(originalPerson, person);
-        // saved muahahaha
+    TrelloAPI.prototype.mapIFLabels = function (response) {
+        var boards = response.json();
+        var ifBoards = boards.filter(function (label) {
+            return label["name"].startsWith('IF') || label["name"].startsWith('I.F.');
+        }).map(function (label) {
+            return new TrelloApiModels.LabelModel(label["name"], label["uses"], label["color"]);
+        });
+        return ifBoards;
     };
     TrelloAPI.prototype.getHeaders = function () {
         var headers = new http_1.Headers();

@@ -1,11 +1,14 @@
 <div class="body-404">
+
     <div class="error-header"> </div>
     <div class="container ">
         <section class="error-container text-center">
             <h1>Trello Board</h1>
             <div class="error-divider">
                 <h2>Select Trello Board</h2>
-                <p class="description"></p>
+                <p class="description"> <select [(ngModel)]="selectedBoard"  (ngModelChange)="onBoardSelected($event)" item-width="100%" width="100%" >
+    <option *ngFor="let board of  boards;" [ngValue]="board.id">{{board.name}}</option>
+   </select></p>
             </div>
         </section>
     </div>

@@ -2,20 +2,27 @@ import { Component, Directive, OnInit } from '@angular/core';
 import  * as ChartModels  from "../Models/ChartModels";
 import { TrelloAPI } from '../Services/trello.Service';
 import * as TrelloAPIModels from '../Models/TrelloAPIModels';
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'trello-app',
   templateUrl: './app/Views/Index.html',
+   providers: [TrelloAPI]
 })
 export class IndexComponent {
-   
-  devStatus: ChartModels.DoughnutChartModel;
-  testingStatus: ChartModels.DoughnutChartModel;
-  refinementStatus: ChartModels.DoughnutChartModel;
-  
-  ngOnInit() {   
-    this.devStatus = new ChartModels.DoughnutChartModel(['Impeded', 'In Dev',], [350, 450], new ChartModels.LegendModel('bottom'));
-    this.testingStatus = new ChartModels.DoughnutChartModel(['Impeded', 'In Test',], [350, 40], new ChartModels.LegendModel('bottom'));
-    this.refinementStatus = new ChartModels.DoughnutChartModel(['Refined', 'In Test',], [350, 40], new ChartModels.LegendModel('bottom'));
+   boards : TrelloAPIModels.Board[]= [];
+   constructor(private _trelloService: TrelloAPI, private router: Router) {
+    
+  }
+  ngOnInit() {
+     this._trelloService.getUserBoards()
+     .subscribe(p => this.boards = p)
+  }
+    selectedBoard:string = null;
+
+  onBoardSelected (selectedBoard) {
+    console.log(selectedBoard);
+    this.selectedBoard = selectedBoard;
+    this.router.navigate(['/dashboard', selectedBoard]);
   }
 }

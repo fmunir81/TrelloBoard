@@ -1,11 +1,12 @@
 "use strict";
 //dfsjhfdkjshfkdsh
 var DoughnutChartModel = (function () {
-    function DoughnutChartModel(chartLabels, labelsData, legendoptions) {
+    function DoughnutChartModel(chartLabels, labelsData, chartColors, legendoptions) {
         this._chartType = 'doughnut';
         this.ChartLabels = chartLabels;
         this.ChartData = labelsData;
         this.Legend = legendoptions;
+        this.ChartColors = chartColors;
     }
     Object.defineProperty(DoughnutChartModel.prototype, "ChartType", {
         get: function () {

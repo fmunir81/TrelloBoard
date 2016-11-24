@@ -19,3 +19,8 @@
         boards: Board[];
         organizations: Organization[];
     }
+    export class LabelModel{
+        constructor (public Name : string, public uses:number, public color:string){
+            
+        }
+    }

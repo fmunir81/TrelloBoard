@@ -9,21 +9,32 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var ChartModels = require("../Models/ChartModels");
+var trello_Service_1 = require('../Services/trello.Service');
+var router_1 = require('@angular/router');
 var IndexComponent = (function () {
-    function IndexComponent() {
+    function IndexComponent(_trelloService, router) {
+        this._trelloService = _trelloService;
+        this.router = router;
+        this.boards = [];
+        this.selectedBoard = null;
     }
     IndexComponent.prototype.ngOnInit = function () {
-        this.devStatus = new ChartModels.DoughnutChartModel(['Impeded', 'In Dev',], [350, 450], new ChartModels.LegendModel('bottom'));
-        this.testingStatus = new ChartModels.DoughnutChartModel(['Impeded', 'In Test',], [350, 40], new ChartModels.LegendModel('bottom'));
-        this.refinementStatus = new ChartModels.DoughnutChartModel(['Refined', 'In Test',], [350, 40], new ChartModels.LegendModel('bottom'));
+        var _this = this;
+        this._trelloService.getUserBoards()
+            .subscribe(function (p) { return _this.boards = p; });
+    };
+    IndexComponent.prototype.onBoardSelected = function (selectedBoard) {
+        console.log(selectedBoard);
+        this.selectedBoard = selectedBoard;
+        this.router.navigate(['/dashboard', selectedBoard]);
     };
     IndexComponent = __decorate([
         core_1.Component({
             selector: 'trello-app',
             templateUrl: './app/Views/Index.html',
+            providers: [trello_Service_1.TrelloAPI]
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [trello_Service_1.TrelloAPI, router_1.Router])
     ], IndexComponent);
     return IndexComponent;
 }());

@@ -9,6 +9,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var forms_1 = require('@angular/forms');
 var platform_browser_1 = require('@angular/platform-browser');
 var http_1 = require('@angular/http');
 var router_1 = require('@angular/router');
@@ -23,7 +24,7 @@ var AppModule = (function () {
     }
     AppModule = __decorate([
         core_1.NgModule({
-            imports: [platform_browser_1.BrowserModule, ng2_charts_1.ChartsModule, http_1.HttpModule, router_1.RouterModule.forRoot(app_routes_1.AppRoutes)],
+            imports: [platform_browser_1.BrowserModule, ng2_charts_1.ChartsModule, http_1.HttpModule, router_1.RouterModule.forRoot(app_routes_1.AppRoutes), forms_1.FormsModule],
             declarations: [index_component_1.IndexComponent, doughnutChart_component_1.DoughnutChartComponent, app_component_1.AppComponent, dashboard_component_1.DashBoardComponent],
             bootstrap: [app_component_1.AppComponent]
         }), 

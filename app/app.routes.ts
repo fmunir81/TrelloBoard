@@ -4,5 +4,5 @@ import { DashBoardComponent }   from './Components/dashboard.component';
 export const AppRoutes: Routes = [
   { path: '', redirectTo: 'index', pathMatch: 'full' },
   { path: 'index', component: IndexComponent },
-  { path: 'dashboard', component: DashBoardComponent }
+  { path: 'dashboard/:id', component: DashBoardComponent }
 ];
