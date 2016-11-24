@@ -9,25 +9,35 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var DoughnutChartComponent = (function () {
-    function DoughnutChartComponent() {
+var BarChartComponent = (function () {
+    function BarChartComponent() {
+        this.barChartOptions = {
+            scaleShowVerticalLines: false,
+            responsive: true
+        };
+        this.barChartLabels = ['2006', '2007', '2008', '2009', '2010', '2011', '2012'];
+        this.barChartType = 'bar';
+        this.barChartLegend = true;
+        this.barChartData = [
+            { data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A' },
+            { data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B' }
+        ];
     }
-    // events
-    DoughnutChartComponent.prototype.chartClicked = function (e) {
+    BarChartComponent.prototype.chartClicked = function (e) {
         console.log(e);
     };
     __decorate([
         core_1.Input(), 
         __metadata('design:type', Object)
-    ], DoughnutChartComponent.prototype, "model", void 0);
-    DoughnutChartComponent = __decorate([
+    ], BarChartComponent.prototype, "model", void 0);
+    BarChartComponent = __decorate([
         core_1.Component({
-            selector: 'doughnut-chart',
-            templateUrl: './app/Views/Charts/doughnutChart.html'
+            selector: 'bar-chart',
+            templateUrl: './app/Views/Charts/barChart.html'
         }), 
         __metadata('design:paramtypes', [])
-    ], DoughnutChartComponent);
-    return DoughnutChartComponent;
+    ], BarChartComponent);
+    return BarChartComponent;
 }());
-exports.DoughnutChartComponent = DoughnutChartComponent;
-//# sourceMappingURL=doughnutChart.component.js.map
+exports.BarChartComponent = BarChartComponent;
+//# sourceMappingURL=barChart.component.js.map

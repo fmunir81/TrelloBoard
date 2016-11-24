@@ -24,3 +24,8 @@
             
         }
     }
+    export class ListCardsCountModel{
+        constructor (public ListName: string,public CardCount:number){
+
+        } 
+    }

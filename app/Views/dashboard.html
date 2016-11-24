@@ -37,16 +37,12 @@
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="row">
-                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                        <doughnut-chart [model]="devStatus">Loading....</doughnut-chart>
+                    <div class="col-lg-6 col-md-6 col-sm-3 col-xs-12">
+                        <doughnut-chart [model]="ifCards">Loading....</doughnut-chart>
                     </div>
-                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                        <doughnut-chart [model]="testingStatus">Loading....</doughnut-chart>
+                    <div class="col-lg-6 col-md-6 col-sm-3 col-xs-12">
+                        <bar-chart [model]="listCardCounts">Loading....</bar-chart>
                     </div>
-                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                        <doughnut-chart [model]="refinementStatus">Loading....</doughnut-chart>
-                    </div>
-
                 </div>
             </div>
         </div>

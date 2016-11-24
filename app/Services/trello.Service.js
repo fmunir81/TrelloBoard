@@ -27,26 +27,43 @@ var TrelloAPI = (function () {
             .map(this.mapBoards);
         return boards$;
     };
-    TrelloAPI.prototype.mapBoards = function (response) {
-        var boards = response.json().boards;
-        return boards;
-    };
     TrelloAPI.prototype.getIFLabelsStats = function (boardId) {
         var url = this.apiUrl + "boards/" + boardId + "/labels?key=" + this.applicationKey + "&token=" + this.authToken;
         ;
-        var boards$ = this.http
+        var ifLabels$ = this.http
             .get(url, { headers: this.getHeaders() })
             .map(this.mapIFLabels);
-        return boards$;
+        return ifLabels$;
+    };
+    TrelloAPI.prototype.getListsCardsCount = function (boardId) {
+        var url = this.apiUrl + "boards/58357a51231a04d6e7d9f87a/lists?cards=all&card_fields=name&fields=name&key=" + this.applicationKey + "&token=" + this.authToken;
+        var listCardCounts$ = this.http
+            .get(url, { headers: this.getHeaders() })
+            .map(this.mapListCardCounts);
+        return listCardCounts$;
+    };
+    TrelloAPI.prototype.mapListCardCounts = function (response) {
+        var lists = response.json();
+        var listsCardCount = lists.filter(function (list) {
+            return list["cards"].length > 0;
+        }).map(function (list) {
+            return new TrelloApiModels.ListCardsCountModel(list["name"], list["cards"].length);
+        });
+        return listsCardCount;
     };
     TrelloAPI.prototype.mapIFLabels = function (response) {
         var boards = response.json();
         var ifBoards = boards.filter(function (label) {
             return label["name"].startsWith('IF') || label["name"].startsWith('I.F.');
         }).map(function (label) {
-            return new TrelloApiModels.LabelModel(label["name"], label["uses"], label["color"]);
+            var color = label["color"] == "sky" ? "#C0C0C0" : label["color"];
+            return new TrelloApiModels.LabelModel(label["name"], label["uses"], color);
         });
         return ifBoards;
+    };
+    TrelloAPI.prototype.mapBoards = function (response) {
+        var boards = response.json().boards;
+        return boards;
     };
     TrelloAPI.prototype.getHeaders = function () {
         var headers = new http_1.Headers();

@@ -19,25 +19,44 @@ export class TrelloAPI {
       .map(this.mapBoards);
     return boards$;
   }
-  private mapBoards(response: Response): TrelloApiModels.Board[] {
-    var boards: TrelloApiModels.Board[] = response.json().boards;
-    return boards;
-  }
+ 
   getIFLabelsStats(boardId: string) {
     var url = this.apiUrl +"boards/"+ boardId +"/labels?key="+ this.applicationKey + "&token=" + this.authToken;;
-    let boards$ = this.http
+    let ifLabels$ = this.http
       .get(url, { headers: this.getHeaders() })
       .map(this.mapIFLabels);
-    return boards$;
+    return ifLabels$;
+  }
+
+  getListsCardsCount(boardId:string){
+    var url:string = this.apiUrl + "boards/58357a51231a04d6e7d9f87a/lists?cards=all&card_fields=name&fields=name&key=" + this.applicationKey + "&token=" + this.authToken;
+    let listCardCounts$ = this.http
+      .get(url, { headers: this.getHeaders() })
+      .map(this.mapListCardCounts);
+    return listCardCounts$;
+  }
+  private mapListCardCounts(response : Response):TrelloApiModels.ListCardsCountModel[]{
+    var lists: any[] = response.json();
+    var listsCardCount:TrelloApiModels.ListCardsCountModel[]  = lists.filter((list)=>{
+      return list["cards"].length > 0;
+    }).map((list)=>{
+      return new TrelloApiModels.ListCardsCountModel(list["name"],list["cards"].length);
+    });
+    return listsCardCount;
   }
   private mapIFLabels(response: Response): TrelloApiModels.LabelModel[] {
     var boards: TrelloApiModels.LabelModel[] = response.json();
     var ifBoards = boards.filter((label) => {
       return label["name"].startsWith('IF') || label["name"].startsWith('I.F.');
     }).map((label) => {
-      return new TrelloApiModels.LabelModel(label["name"], label["uses"], label["color"]);
+      var color =  label["color"]=="sky"?"#C0C0C0":label["color"];
+      return new TrelloApiModels.LabelModel(label["name"], label["uses"], color);
     });
     return ifBoards;
+  }
+   private mapBoards(response: Response): TrelloApiModels.Board[] {
+    var boards: TrelloApiModels.Board[] = response.json().boards;
+    return boards;
   }
   private getHeaders() {
     let headers = new Headers();
@@ -48,4 +67,5 @@ export class TrelloAPI {
     // hack
     return JSON.parse(JSON.stringify(object));
   }
+
 }

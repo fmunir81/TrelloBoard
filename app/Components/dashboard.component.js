@@ -18,18 +18,18 @@ var DashBoardComponent = (function () {
         this._trelloService = _trelloService;
         this.route = route;
         this.router = router;
-        this.devStatus = new ChartModels.DoughnutChartModel([], [], [], new ChartModels.LegendModel('bottom'));
+        this.ifCards = new ChartModels.DoughnutChartModel([], [], [], new ChartModels.LegendModel('bottom'));
+        this.listCardCounts = new ChartModels.BarChartModel([""], true, [new ChartModels.BarChartDataModel([0], "")], false, true);
     }
     DashBoardComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.boardId = this.route.snapshot.params['id'];
         this._trelloService.getIFLabelsStats(this.boardId)
             .subscribe(function (p) { return _this.renderIFChart(p); });
-        this.testingStatus = new ChartModels.DoughnutChartModel(['Impeded', 'In Test',], [350, 40], ["sky", "blue"], new ChartModels.LegendModel('bottom'));
-        this.refinementStatus = new ChartModels.DoughnutChartModel(['Refined', 'In Test',], [350, 40], ["sky", "blue"], new ChartModels.LegendModel('bottom'));
+        this._trelloService.getListsCardsCount(this.boardId)
+            .subscribe(function (p) { return _this.renderListBarChart(p); });
     };
     DashBoardComponent.prototype.renderIFChart = function (models) {
-        debugger;
         var labels = models.sort(function (a, b) {
             var textA = a.Name.toUpperCase();
             var textB = b.Name.toUpperCase();
@@ -51,7 +51,13 @@ var DashBoardComponent = (function () {
         }).map(function (label) {
             return label.color;
         });
-        this.devStatus = new ChartModels.DoughnutChartModel(labels, numbers, colors, new ChartModels.LegendModel('bottom'));
+        this.ifCards = new ChartModels.DoughnutChartModel(labels, numbers, colors, new ChartModels.LegendModel('bottom'));
+    };
+    DashBoardComponent.prototype.renderListBarChart = function (models) {
+        var barChartData = models.map(function (list) {
+            return new ChartModels.BarChartDataModel([list.CardCount], list.ListName);
+        });
+        this.listCardCounts = new ChartModels.BarChartModel(["Lists"], true, barChartData, false, true);
     };
     DashBoardComponent = __decorate([
         core_1.Component({
