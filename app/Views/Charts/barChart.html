@@ -7,3 +7,8 @@
             [chartType]="model.ChartType"
             (chartClick)="chartClicked($event)"></canvas>
   </div>
+<div *ngIf="isParent">
+<modal cssClass="modal-xl" #barChartModal>
+<bar-chart [model]="model">Loading....</bar-chart>
+</modal>
+</div>

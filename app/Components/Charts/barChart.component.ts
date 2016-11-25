@@ -7,11 +7,10 @@ import { ModalComponent } from 'ng2-bs3-modal/ng2-bs3-modal';
   templateUrl: './app/Views/Charts/barChart.html'
 })
 export class BarChartComponent {
-   @ViewChild('myModal3')
-    @Input() model;
-     modal: ModalComponent;
+   @ViewChild('barChartModal')  modal: ModalComponent;
+   @Input() model;
+   @Input() isParent = false; 
   public chartClicked(e:any):void {
-    console.log(e);
     this.modal.open();
   }
 }
