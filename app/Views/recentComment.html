@@ -1,7 +1,11 @@
 <div class="orders-container">
-                    <div class="orders-header">
-                        <h6>Recent Comments</h6>
-                    </div>
+                    <div class="widget">
+                        <div class="widget-header bordered-bottom bordered-themeprimary">
+                            <i class="widget-icon fa fa-comment themeprimary"></i>
+                            <span class="widget-caption themeprimary">Recent Comments</span>
+                        </div>
+                        <!--Widget Header-->
+                        <div class="widget-body no-padding">
                     <ul class="orders-list">
                         <li class="order-item" *ngFor="let item of model;">
                             <div class="row">
@@ -34,3 +38,4 @@
                         </div>
                     </div>
                 </div>
+                    </div>

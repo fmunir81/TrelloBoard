@@ -3,7 +3,7 @@
                     <div class="widget">
                         <div class="widget-header bordered-bottom bordered-themeprimary">
                             <i class="widget-icon fa fa-tasks themeprimary"></i>
-                            <span class="widget-caption themeprimary">Task Board</span>
+                            <span class="widget-caption themeprimary">Task Board Actions</span>
                         </div>
                         <!--Widget Header-->
                         <div class="widget-body no-padding">
@@ -39,7 +39,7 @@
 
                                         <!-- <div class="task-body"><b>{{item.data.card.name}}</b></div> -->        
                                         <div></div>    
-                                        <div class="task-body" *ngIf="item.type == 'updateCard'">Card: <b>{{item.data.card.name}}</b><br />{{item.data.listBefore.name}} -&gt; {{item.data.listAfter.name}}</div>
+                                        <div class="task-body" *ngIf="item.type == 'updateCard'"  style="height: 55px!important;">Card: <b>{{item.data.card.name}}</b><br />{{item.data.listBefore.name}} <i class="fa fa-arrow-circle-right fa-lg"></i> {{item.data.listAfter.name}}</div>
                                         <div class="task-body" *ngIf="item.type == 'addAttachmentToCard'">Card: <b>{{item.data.card.name}}</b></div>
                                         <div class="task-body" *ngIf="item.type == 'addMemberToCard'">Card: <b>{{item.data.card.name}}</b><br />{{item.member.fullName}}</div>
                                         

@@ -5,6 +5,7 @@
             [options]="model.BarChartOptions"
             [legend]="model.BarChartLegend"
             [chartType]="model.ChartType"
+            [colors]="model.colors" 
             (chartClick)="chartClicked($event)"></canvas>
   </div>
 <div *ngIf="isParent">

@@ -17,24 +17,35 @@ export class DashBoardComponent {
   actions: TrelloAPIModels.Action[];
 
   boardId: string;
-  boardName : string;
+  boardName: string;
   constructor(private _trelloService: TrelloAPI, private route: ActivatedRoute, private router: Router) {
 
   }
   ngOnInit() {
     this.boardId = this.route.snapshot.params['id'];
     this.boardName = this.route.snapshot.params['name'];
+    this.loadIfCardschart();
+    this.loadListsCardcount();
+    this.loadRecentComments();
+    this.loadRecentActions();
+  }
+  loadIfCardschart() {
+    debugger;
     this._trelloService.getIFLabelsStats(this.boardId)
       .subscribe(p => this.renderIFChart(p));
+  }
+  loadListsCardcount() {
     this._trelloService.getListsCardsCount(this.boardId)
       .subscribe(p => this.renderListBarChart(p));
 
-     this._trelloService.getRecentComments(this.boardId)
-     .subscribe(p=>this.comments = p);
-
-     this._trelloService.getRecentActions(this.boardId)
-     .subscribe(p=>this.actions = p);
-
+  }
+  loadRecentComments(){
+  this._trelloService.getRecentComments(this.boardId)
+      .subscribe(p => this.comments = p);
+  }
+  loadRecentActions(){
+  this._trelloService.getRecentActions(this.boardId)
+      .subscribe(p => this.actions = p);
   }
   renderIFChart(models: TrelloAPIModels.LabelModel[]) {
     var labels = models.sort((a, b) => {
@@ -62,8 +73,14 @@ export class DashBoardComponent {
   }
   renderListBarChart(models: TrelloAPIModels.ListCardsCountModel[]) {
     var barChartData = models.map((list) => {
-      return new ChartModels.BarChartDataModel([list.CardCount], list.ListName);
-    });
+      return new ChartModels.BarChartDataModel([list.CardCount], list.ListName,["rgba(255, 99, 132, 0.2)"],[],1);
+    }); 
+      barChartData.push(new ChartModels.BarChartDataModel([0],"" ,["rgba(255, 99, 132, 0.2)"],[],1));  
     this.listCardCounts = new ChartModels.BarChartModel(["Uptime Graph"], true, barChartData, false, true);
   }
+
+
+
+}
+
 }

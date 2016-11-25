@@ -22,15 +22,31 @@ var DashBoardComponent = (function () {
         this.listCardCounts = new ChartModels.BarChartModel([""], true, [new ChartModels.BarChartDataModel([0], "")], false, true);
     }
     DashBoardComponent.prototype.ngOnInit = function () {
-        var _this = this;
         this.boardId = this.route.snapshot.params['id'];
         this.boardName = this.route.snapshot.params['name'];
+        this.loadIfCardschart();
+        this.loadListsCardcount();
+        this.loadRecentComments();
+        this.loadRecentActions();
+    };
+    DashBoardComponent.prototype.loadIfCardschart = function () {
+        var _this = this;
+        debugger;
         this._trelloService.getIFLabelsStats(this.boardId)
             .subscribe(function (p) { return _this.renderIFChart(p); });
+    };
+    DashBoardComponent.prototype.loadListsCardcount = function () {
+        var _this = this;
         this._trelloService.getListsCardsCount(this.boardId)
             .subscribe(function (p) { return _this.renderListBarChart(p); });
+    };
+    DashBoardComponent.prototype.loadRecentComments = function () {
+        var _this = this;
         this._trelloService.getRecentComments(this.boardId)
             .subscribe(function (p) { return _this.comments = p; });
+    };
+    DashBoardComponent.prototype.loadRecentActions = function () {
+        var _this = this;
         this._trelloService.getRecentActions(this.boardId)
             .subscribe(function (p) { return _this.actions = p; });
     };
@@ -60,8 +76,9 @@ var DashBoardComponent = (function () {
     };
     DashBoardComponent.prototype.renderListBarChart = function (models) {
         var barChartData = models.map(function (list) {
-            return new ChartModels.BarChartDataModel([list.CardCount], list.ListName);
+            return new ChartModels.BarChartDataModel([list.CardCount], list.ListName, ["rgba(255, 99, 132, 0.2)"], [], 1);
         });
+        barChartData.push(new ChartModels.BarChartDataModel([0], "", ["rgba(255, 99, 132, 0.2)"], [], 1));
         this.listCardCounts = new ChartModels.BarChartModel(["Uptime Graph"], true, barChartData, false, true);
     };
     DashBoardComponent = __decorate([
