@@ -6,4 +6,9 @@
               [legend]="model.Legend"
               [colors]="model.ChartColors"
               (chartClick)="chartClicked($event)"></canvas>
+              
+</div>
+<div *ngIf="isParent">
+<modal cssClass="modal-xl" #myModal3><doughnut-chart [model]="model">Loading....</doughnut-chart></modal>
+ <button type="button" class="btn btn-default" (click)="modal.open()">Open me!</button>
 </div>

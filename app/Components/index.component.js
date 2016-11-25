@@ -11,6 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var trello_Service_1 = require('../Services/trello.Service');
 var router_1 = require('@angular/router');
+var ng2_bs3_modal_1 = require('ng2-bs3-modal/ng2-bs3-modal');
 var IndexComponent = (function () {
     function IndexComponent(_trelloService, router) {
         this._trelloService = _trelloService;
@@ -28,6 +29,10 @@ var IndexComponent = (function () {
         this.selectedBoard = selectedBoard;
         this.router.navigate(['/dashboard', selectedBoard]);
     };
+    __decorate([
+        core_1.ViewChild('myModald'), 
+        __metadata('design:type', ng2_bs3_modal_1.ModalComponent)
+    ], IndexComponent.prototype, "modal", void 0);
     IndexComponent = __decorate([
         core_1.Component({
             selector: 'trello-app',

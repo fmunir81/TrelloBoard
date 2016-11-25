@@ -4,7 +4,7 @@ import  * as ChartModels  from "../Models/ChartModels";
 import { TrelloAPI } from '../Services/trello.Service';
 import * as TrelloAPIModels from '../Models/TrelloAPIModels';
 import { ActivatedRoute,Router,Params } from '@angular/router'
-
+import { ModalComponent } from 'ng2-bs3-modal/ng2-bs3-modal';
 @Component({
   selector: 'trello-app',
   templateUrl: './app/Views/dashboard.html',

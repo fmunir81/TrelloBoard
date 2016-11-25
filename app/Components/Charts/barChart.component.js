@@ -11,22 +11,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var BarChartComponent = (function () {
     function BarChartComponent() {
-        this.barChartOptions = {
-            scaleShowVerticalLines: false,
-            responsive: true
-        };
-        this.barChartLabels = ['2006', '2007', '2008', '2009', '2010', '2011', '2012'];
-        this.barChartType = 'bar';
-        this.barChartLegend = true;
-        this.barChartData = [
-            { data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A' },
-            { data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B' }
-        ];
     }
     BarChartComponent.prototype.chartClicked = function (e) {
         console.log(e);
+        this.modal.open();
     };
     __decorate([
+        core_1.ViewChild('myModal3'),
         core_1.Input(), 
         __metadata('design:type', Object)
     ], BarChartComponent.prototype, "model", void 0);
