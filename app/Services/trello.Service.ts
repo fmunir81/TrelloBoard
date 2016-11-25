@@ -19,6 +19,22 @@ export class TrelloAPI {
       .map(this.mapBoards);
     return boards$;
   }
+
+  getRecentActions(boardId: string) {
+    var url: string = this.apiUrl +"boards/"+ boardId +"/actions?filter=addAttachmentToCard,addMemberToCard,updateCard:idList&limit=10&key="+ this.applicationKey + "&token=" + this.authToken;
+    let actions$ = this.http
+      .get(url, { headers: this.getHeaders() })
+      .map(this.mapActions);
+    return actions$;
+  }
+
+  getRecentComments(boardId: string) {
+    var url: string = this.apiUrl +"boards/"+ boardId +"/actions?filter=commentCard&limit=10&key="+ this.applicationKey + "&token=" + this.authToken;
+    let comments$ = this.http
+      .get(url, { headers: this.getHeaders() })
+      .map(this.mapComments);
+    return comments$;
+  }
  
   getIFLabelsStats(boardId: string) {
     var url = this.apiUrl +"boards/"+ boardId +"/labels?key="+ this.applicationKey + "&token=" + this.authToken;;
@@ -57,6 +73,16 @@ export class TrelloAPI {
    private mapBoards(response: Response): TrelloApiModels.Board[] {
     var boards: TrelloApiModels.Board[] = response.json().boards;
     return boards;
+  }
+
+  private mapActions(response: Response): TrelloApiModels.Action[] {
+    var actions: TrelloApiModels.Action[] = response.json();
+    return actions;
+  }
+
+  private mapComments(response: Response): TrelloApiModels.Comments[] {
+    var comments: TrelloApiModels.Comments[] = response.json();
+    return comments;
   }
   private getHeaders() {
     let headers = new Headers();

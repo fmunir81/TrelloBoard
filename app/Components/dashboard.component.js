@@ -29,6 +29,10 @@ var DashBoardComponent = (function () {
             .subscribe(function (p) { return _this.renderIFChart(p); });
         this._trelloService.getListsCardsCount(this.boardId)
             .subscribe(function (p) { return _this.renderListBarChart(p); });
+        this._trelloService.getRecentComments(this.boardId)
+            .subscribe(function (p) { return _this.comments = p; });
+        this._trelloService.getRecentActions(this.boardId)
+            .subscribe(function (p) { return _this.actions = p; });
     };
     DashBoardComponent.prototype.renderIFChart = function (models) {
         var labels = models.sort(function (a, b) {

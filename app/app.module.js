@@ -18,6 +18,8 @@ var dashboard_component_1 = require('./Components/dashboard.component');
 var app_component_1 = require('./Components/app.component');
 var ng2_charts_1 = require('ng2-charts/ng2-charts');
 var doughnutChart_component_1 = require('./Components/Charts/doughnutChart.component');
+var recent_comment_component_1 = require('./Components/recent-comment.component');
+var recent_action_component_1 = require('./Components/recent-action.component');
 var barChart_component_1 = require('./Components/Charts/barChart.component');
 var app_routes_1 = require('./app.routes');
 var ng2_bs3_modal_1 = require('ng2-bs3-modal/ng2-bs3-modal');
@@ -27,7 +29,7 @@ var AppModule = (function () {
     AppModule = __decorate([
         core_1.NgModule({
             imports: [platform_browser_1.BrowserModule, ng2_charts_1.ChartsModule, http_1.HttpModule, router_1.RouterModule.forRoot(app_routes_1.AppRoutes), forms_1.FormsModule, ng2_bs3_modal_1.Ng2Bs3ModalModule],
-            declarations: [index_component_1.IndexComponent, doughnutChart_component_1.DoughnutChartComponent, app_component_1.AppComponent, dashboard_component_1.DashBoardComponent, barChart_component_1.BarChartComponent],
+            declarations: [index_component_1.IndexComponent, doughnutChart_component_1.DoughnutChartComponent, app_component_1.AppComponent, dashboard_component_1.DashBoardComponent, barChart_component_1.BarChartComponent, recent_comment_component_1.RecentCommentsComponent, recent_action_component_1.RecentActionsComponent],
             bootstrap: [app_component_1.AppComponent]
         }), 
         __metadata('design:paramtypes', [])

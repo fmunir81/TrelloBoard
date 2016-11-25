@@ -27,6 +27,20 @@ var TrelloAPI = (function () {
             .map(this.mapBoards);
         return boards$;
     };
+    TrelloAPI.prototype.getRecentActions = function (boardId) {
+        var url = this.apiUrl + "boards/" + boardId + "/actions?filter=addAttachmentToCard,addMemberToCard,updateCard:idList&limit=10&key=" + this.applicationKey + "&token=" + this.authToken;
+        var actions$ = this.http
+            .get(url, { headers: this.getHeaders() })
+            .map(this.mapActions);
+        return actions$;
+    };
+    TrelloAPI.prototype.getRecentComments = function (boardId) {
+        var url = this.apiUrl + "boards/" + boardId + "/actions?filter=commentCard&limit=10&key=" + this.applicationKey + "&token=" + this.authToken;
+        var comments$ = this.http
+            .get(url, { headers: this.getHeaders() })
+            .map(this.mapComments);
+        return comments$;
+    };
     TrelloAPI.prototype.getIFLabelsStats = function (boardId) {
         var url = this.apiUrl + "boards/" + boardId + "/labels?key=" + this.applicationKey + "&token=" + this.authToken;
         ;
@@ -64,6 +78,14 @@ var TrelloAPI = (function () {
     TrelloAPI.prototype.mapBoards = function (response) {
         var boards = response.json().boards;
         return boards;
+    };
+    TrelloAPI.prototype.mapActions = function (response) {
+        var actions = response.json();
+        return actions;
+    };
+    TrelloAPI.prototype.mapComments = function (response) {
+        var comments = response.json();
+        return comments;
     };
     TrelloAPI.prototype.getHeaders = function () {
         var headers = new http_1.Headers();

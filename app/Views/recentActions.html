@@ -1,0 +1,57 @@
+<div class="row">
+
+                    <div class="widget">
+                        <div class="widget-header bordered-bottom bordered-themeprimary">
+                            <i class="widget-icon fa fa-tasks themeprimary"></i>
+                            <span class="widget-caption themeprimary">Task Board</span>
+                        </div>
+                        <!--Widget Header-->
+                        <div class="widget-body no-padding">
+                            <div class="task-container">
+                                <div class="task-search">
+                                    <span class="input-icon">
+                                                <input type="text" class="form-control" placeholder="Search Tasks">
+                                                <i class="fa fa-search gray"></i>
+                                            </span>
+                                </div>
+                                <ul class="tasks-list">
+                                    <li class="task-item" *ngFor="let item of model;">
+                                        <div class="task-check">
+                                            <label>
+                                                        <span class="text"></span>
+                                                    </label>
+                                        </div>
+                                        <br/>
+                                        <div class="task-state">
+                                            <span *ngIf="item.type == 'updateCard'" class="label label-yellow">
+                                                        Update Card
+                                                    </span>
+
+                                            <span *ngIf="item.type == 'addAttachmentToCard'" class="label label-orange">
+                                                        Add Attachment To Card
+                                                    </span>
+
+                                            <span *ngIf="item.type == 'addMemberToCard'" class="label label-blue">
+                                                        Add Member To Card
+                                                    </span>
+                                        </div>
+                                        <div class="task-time">{{item.date | date:'medium'}}</div>
+
+                                        <!-- <div class="task-body"><b>{{item.data.card.name}}</b></div> -->        
+                                        <div></div>    
+                                        <div class="task-body" *ngIf="item.type == 'updateCard'">Card: <b>{{item.data.card.name}}</b><br />{{item.data.listBefore.name}} -&gt; {{item.data.listAfter.name}}</div>
+                                        <div class="task-body" *ngIf="item.type == 'addAttachmentToCard'">Card: <b>{{item.data.card.name}}</b></div>
+                                        <div class="task-body" *ngIf="item.type == 'addMemberToCard'">Card: <b>{{item.data.card.name}}</b><br />{{item.member.fullName}}</div>
+                                        
+                                        <div class="task-creator">Action By: <b> {{item.memberCreator.fullName}} </b></div>
+                                        <div class="task-assignedto"><a target="blank" href="https://trello.com/c/{{item.data.card.shortLink}}">View Detail</a></div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!--Widget Body-->
+                    </div>
+
+
+
+                </div>

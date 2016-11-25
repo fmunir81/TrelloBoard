@@ -1,10 +1,4 @@
 "use strict";
-var Board = (function () {
-    function Board() {
-    }
-    return Board;
-}());
-exports.Board = Board;
 var Organization = (function () {
     function Organization() {
     }
@@ -35,4 +29,76 @@ var ListCardsCountModel = (function () {
     return ListCardsCountModel;
 }());
 exports.ListCardsCountModel = ListCardsCountModel;
+var ListAfter = (function () {
+    function ListAfter() {
+    }
+    return ListAfter;
+}());
+exports.ListAfter = ListAfter;
+var ListBefore = (function () {
+    function ListBefore() {
+    }
+    return ListBefore;
+}());
+exports.ListBefore = ListBefore;
+var Board = (function () {
+    function Board() {
+    }
+    return Board;
+}());
+exports.Board = Board;
+var Card = (function () {
+    function Card() {
+    }
+    return Card;
+}());
+exports.Card = Card;
+var Old = (function () {
+    function Old() {
+    }
+    return Old;
+}());
+exports.Old = Old;
+var Data = (function () {
+    function Data() {
+    }
+    return Data;
+}());
+exports.Data = Data;
+var MemberCreator = (function () {
+    function MemberCreator() {
+    }
+    return MemberCreator;
+}());
+exports.MemberCreator = MemberCreator;
+var Member = (function () {
+    function Member() {
+    }
+    return Member;
+}());
+exports.Member = Member;
+var List = (function () {
+    function List() {
+    }
+    return List;
+}());
+exports.List = List;
+var CommentData = (function () {
+    function CommentData() {
+    }
+    return CommentData;
+}());
+exports.CommentData = CommentData;
+var Action = (function () {
+    function Action() {
+    }
+    return Action;
+}());
+exports.Action = Action;
+var Comments = (function () {
+    function Comments() {
+    }
+    return Comments;
+}());
+exports.Comments = Comments;
 //# sourceMappingURL=TrelloAPIModels.js.map
