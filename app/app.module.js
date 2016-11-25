@@ -17,7 +17,6 @@ var dashboard_component_1 = require('./Components/dashboard.component');
 var app_component_1 = require('./Components/app.component');
 var ng2_charts_1 = require('ng2-charts/ng2-charts');
 var doughnutChart_component_1 = require('./Components/Charts/doughnutChart.component');
-var recentactions_component_1 = require('./Components/recentactions.component');
 var app_routes_1 = require('./app.routes');
 var AppModule = (function () {
     function AppModule() {
@@ -25,7 +24,7 @@ var AppModule = (function () {
     AppModule = __decorate([
         core_1.NgModule({
             imports: [platform_browser_1.BrowserModule, ng2_charts_1.ChartsModule, http_1.HttpModule, router_1.RouterModule.forRoot(app_routes_1.AppRoutes)],
-            declarations: [index_component_1.IndexComponent, doughnutChart_component_1.DoughnutChartComponent, app_component_1.AppComponent, dashboard_component_1.DashBoardComponent, recentactions_component_1.RecentActionsComponent],
+            declarations: [index_component_1.IndexComponent, doughnutChart_component_1.DoughnutChartComponent, app_component_1.AppComponent, dashboard_component_1.DashBoardComponent],
             bootstrap: [app_component_1.AppComponent]
         }), 
         __metadata('design:paramtypes', [])

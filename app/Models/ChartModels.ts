@@ -18,5 +18,3 @@
     constructor(public position: string) {
     }
   }
-
-  
