@@ -62,7 +62,7 @@ var DashBoardComponent = (function () {
         var barChartData = models.map(function (list) {
             return new ChartModels.BarChartDataModel([list.CardCount], list.ListName);
         });
-        this.listCardCounts = new ChartModels.BarChartModel(["Lists"], true, barChartData, false, true);
+        this.listCardCounts = new ChartModels.BarChartModel(["Uptime Graph"], true, barChartData, false, true);
     };
     DashBoardComponent = __decorate([
         core_1.Component({
