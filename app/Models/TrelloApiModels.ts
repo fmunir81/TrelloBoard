@@ -19,3 +19,13 @@
         boards: Board[];
         organizations: Organization[];
     }
+    export class LabelModel{
+        constructor (public Name : string, public uses:number, public color:string){
+            
+        }
+    }
+    export class ListCardsCountModel{
+        constructor (public ListName: string,public CardCount:number){
+
+        } 
+    }
