@@ -17,9 +17,35 @@ var IndexComponent = (function () {
         this._trelloService = _trelloService;
         this.router = router;
         this.boards = [];
+        this.authStatus = false;
         this.selectedBoard = "";
+        this.trelloObj = Trello;
     }
+    IndexComponent.prototype.authenticateOnTrello = function () {
+        var _this = this;
+        this.trelloObj.authorize({
+            type: "popup",
+            name: "Trello dashboard",
+            scope: {
+                read: true,
+                write: false
+            },
+            expiration: "never",
+            success: function () {
+                console.log("Successful authentication");
+                _this.authStatus = true;
+                _this.getBoards();
+            },
+            error: function () {
+                _this.authStatus = false;
+                console.log("Failed authentication");
+            }
+        });
+    };
     IndexComponent.prototype.ngOnInit = function () {
+        this.authenticateOnTrello();
+    };
+    IndexComponent.prototype.getBoards = function () {
         var _this = this;
         this._trelloService.getUserBoards()
             .subscribe(function (p) { return _this.boards = p; });

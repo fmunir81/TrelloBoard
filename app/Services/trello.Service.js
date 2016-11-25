@@ -17,40 +17,41 @@ var TrelloAPI = (function () {
     function TrelloAPI(http) {
         this.http = http;
         this.applicationKey = "aeb9fdc2672e33ac666105e8048246de";
-        this.authToken = "11926bdc8da2b0e56b18c80844f8a7f819b8527269a183600ab41cc255cdd4da";
+        this.authToken = localStorage.getItem("trello_token"); //"11926bdc8da2b0e56b18c80844f8a7f819b8527269a183600ab41cc255cdd4da";
         this.apiUrl = "https://api.trello.com/1/";
+        this.authStatus = true;
     }
     TrelloAPI.prototype.getUserBoards = function () {
-        var url = this.apiUrl + "members/me?fields=username&boards=all&board_fields=name&key=" + this.applicationKey + "&token=" + this.authToken;
+        var url = this.apiUrl + "members/me?fields=username&boards=all&board_fields=name&key=" + this.applicationKey + "&token=" + localStorage.getItem("trello_token");
         var boards$ = this.http
             .get(url, { headers: this.getHeaders() })
             .map(this.mapBoards);
         return boards$;
     };
     TrelloAPI.prototype.getRecentActions = function (boardId) {
-        var url = this.apiUrl + "boards/" + boardId + "/actions?filter=addAttachmentToCard,addMemberToCard,updateCard:idList&limit=10&key=" + this.applicationKey + "&token=" + this.authToken;
+        var url = this.apiUrl + "boards/" + boardId + "/actions?filter=addAttachmentToCard,addMemberToCard,updateCard:idList&limit=10&key=" + this.applicationKey + "&token=" + localStorage.getItem("trello_token");
         var actions$ = this.http
             .get(url, { headers: this.getHeaders() })
             .map(this.mapActions);
         return actions$;
     };
     TrelloAPI.prototype.getRecentComments = function (boardId) {
-        var url = this.apiUrl + "boards/" + boardId + "/actions?filter=commentCard&limit=10&key=" + this.applicationKey + "&token=" + this.authToken;
+        var url = this.apiUrl + "boards/" + boardId + "/actions?filter=commentCard&limit=10&key=" + this.applicationKey + "&token=" + localStorage.getItem("trello_token");
+        ;
         var comments$ = this.http
             .get(url, { headers: this.getHeaders() })
             .map(this.mapComments);
         return comments$;
     };
     TrelloAPI.prototype.getIFLabelsStats = function (boardId) {
-        var url = this.apiUrl + "boards/" + boardId + "/labels?key=" + this.applicationKey + "&token=" + this.authToken;
-        ;
+        var url = this.apiUrl + "boards/" + boardId + "/labels?key=" + this.applicationKey + "&token=" + localStorage.getItem("trello_token");
         var ifLabels$ = this.http
             .get(url, { headers: this.getHeaders() })
             .map(this.mapIFLabels);
         return ifLabels$;
     };
     TrelloAPI.prototype.getListsCardsCount = function (boardId) {
-        var url = this.apiUrl + "boards/" + boardId + "/lists?cards=all&card_fields=name&fields=name&key=" + this.applicationKey + "&token=" + this.authToken;
+        var url = this.apiUrl + "boards/" + boardId + "/lists?cards=all&card_fields=name&fields=name&key=" + this.applicationKey + "&token=" + localStorage.getItem("trello_token");
         var listCardCounts$ = this.http
             .get(url, { headers: this.getHeaders() })
             .map(this.mapListCardCounts);
