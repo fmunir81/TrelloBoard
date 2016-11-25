@@ -36,7 +36,7 @@ var TrelloAPI = (function () {
         return ifLabels$;
     };
     TrelloAPI.prototype.getListsCardsCount = function (boardId) {
-        var url = this.apiUrl + "boards/58357a51231a04d6e7d9f87a/lists?cards=all&card_fields=name&fields=name&key=" + this.applicationKey + "&token=" + this.authToken;
+        var url = this.apiUrl + "boards/" + boardId + "/lists?cards=all&card_fields=name&fields=name&key=" + this.applicationKey + "&token=" + this.authToken;
         var listCardCounts$ = this.http
             .get(url, { headers: this.getHeaders() })
             .map(this.mapListCardCounts);

@@ -24,6 +24,7 @@ var DashBoardComponent = (function () {
     DashBoardComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.boardId = this.route.snapshot.params['id'];
+        this.boardName = this.route.snapshot.params['name'];
         this._trelloService.getIFLabelsStats(this.boardId)
             .subscribe(function (p) { return _this.renderIFChart(p); });
         this._trelloService.getListsCardsCount(this.boardId)

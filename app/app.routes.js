@@ -4,6 +4,6 @@ var dashboard_component_1 = require('./Components/dashboard.component');
 exports.AppRoutes = [
     { path: '', redirectTo: 'index', pathMatch: 'full' },
     { path: 'index', component: index_component_1.IndexComponent },
-    { path: 'dashboard/:id', component: dashboard_component_1.DashBoardComponent }
+    { path: 'dashboard/:id/:name', component: dashboard_component_1.DashBoardComponent }
 ];
 //# sourceMappingURL=app.routes.js.map

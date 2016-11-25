@@ -20,11 +20,12 @@ export class IndexComponent {
      this._trelloService.getUserBoards()
      .subscribe(p => this.boards = p)
   }
-    selectedBoard:string = null;
+    selectedBoard:string = "";
 
-  onBoardSelected (selectedBoard) {
-    console.log(selectedBoard);
-    this.selectedBoard = selectedBoard;
-    this.router.navigate(['/dashboard', selectedBoard]);
+  onBoardSelected (board) {
+    debugger;
+    console.log(board.id);
+    this.selectedBoard = board.id;
+    this.router.navigate(['/dashboard', this.selectedBoard,board.name]);
   }
 }

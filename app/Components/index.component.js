@@ -17,17 +17,18 @@ var IndexComponent = (function () {
         this._trelloService = _trelloService;
         this.router = router;
         this.boards = [];
-        this.selectedBoard = null;
+        this.selectedBoard = "";
     }
     IndexComponent.prototype.ngOnInit = function () {
         var _this = this;
         this._trelloService.getUserBoards()
             .subscribe(function (p) { return _this.boards = p; });
     };
-    IndexComponent.prototype.onBoardSelected = function (selectedBoard) {
-        console.log(selectedBoard);
-        this.selectedBoard = selectedBoard;
-        this.router.navigate(['/dashboard', selectedBoard]);
+    IndexComponent.prototype.onBoardSelected = function (board) {
+        debugger;
+        console.log(board.id);
+        this.selectedBoard = board.id;
+        this.router.navigate(['/dashboard', this.selectedBoard, board.name]);
     };
     __decorate([
         core_1.ViewChild('myModald'), 
