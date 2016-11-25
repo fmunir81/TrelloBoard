@@ -7,10 +7,11 @@ import { DashBoardComponent }   from './Components/dashboard.component';
 import {AppComponent} from './Components/app.component'
 import { ChartsModule } from 'ng2-charts/ng2-charts';
 import { DoughnutChartComponent } from './Components/Charts/doughnutChart.component'
+import { RecentActionsComponent } from './Components/recentactions.component'
 import { AppRoutes } from './app.routes'
 @NgModule({
   imports:      [ BrowserModule, ChartsModule,HttpModule,RouterModule.forRoot(AppRoutes) ],
-  declarations: [ IndexComponent,DoughnutChartComponent,AppComponent,DashBoardComponent ],
+  declarations: [ IndexComponent,DoughnutChartComponent,AppComponent,DashBoardComponent, RecentActionsComponent ],
   bootstrap:    [ AppComponent ]
 })
 export class AppModule { 
