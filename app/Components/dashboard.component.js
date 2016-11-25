@@ -19,7 +19,7 @@ var DashBoardComponent = (function () {
         this.route = route;
         this.router = router;
         this.ifCards = new ChartModels.DoughnutChartModel([], [], [], new ChartModels.LegendModel('bottom'));
-        this.listCardCounts = new ChartModels.BarChartModel([""], true, [new ChartModels.BarChartDataModel([0], "")], false, true);
+        this.listCardCounts = new ChartModels.BarChartModel([""], true, [new ChartModels.BarChartDataModel([0], "", ["rgba(255, 99, 132, 0.2)"], [], 1)], false, true);
     }
     DashBoardComponent.prototype.ngOnInit = function () {
         this.boardId = this.route.snapshot.params['id'];
@@ -31,7 +31,6 @@ var DashBoardComponent = (function () {
     };
     DashBoardComponent.prototype.loadIfCardschart = function () {
         var _this = this;
-        debugger;
         this._trelloService.getIFLabelsStats(this.boardId)
             .subscribe(function (p) { return _this.renderIFChart(p); });
     };

@@ -12,8 +12,8 @@ declare var Trello: any;
   providers: [TrelloAPI]
 })
 export class IndexComponent {
-  @ViewChild('myModald')
-  modal: ModalComponent;
+  @ViewChild('myModald')  modal: ModalComponent;
+
   boards: TrelloAPIModels.Board[] = [];
   trelloObj: any;
   authStatus: boolean = false;
@@ -46,7 +46,7 @@ export class IndexComponent {
   }
   getBoards() {
     this._trelloService.getUserBoards()
-      .subscribe(p => this.boards = p)
+      .subscribe(p => this.boards = p);
   }
   selectedBoard: string = "";
 

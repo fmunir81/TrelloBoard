@@ -12,7 +12,7 @@ import { ModalComponent } from 'ng2-bs3-modal/ng2-bs3-modal';
 })
 export class DashBoardComponent {
   ifCards: ChartModels.DoughnutChartModel = new ChartModels.DoughnutChartModel([], [], [], new ChartModels.LegendModel('bottom'));
-  listCardCounts: ChartModels.BarChartModel = new ChartModels.BarChartModel([""], true, [new ChartModels.BarChartDataModel([0], "")], false, true);
+  listCardCounts: ChartModels.BarChartModel = new ChartModels.BarChartModel([""], true, [new ChartModels.BarChartDataModel([0],"" ,["rgba(255, 99, 132, 0.2)"],[],1)], false, true);
   comments: TrelloAPIModels.Comments[];
   actions: TrelloAPIModels.Action[];
 
@@ -30,7 +30,6 @@ export class DashBoardComponent {
     this.loadRecentActions();
   }
   loadIfCardschart() {
-    debugger;
     this._trelloService.getIFLabelsStats(this.boardId)
       .subscribe(p => this.renderIFChart(p));
   }
@@ -83,4 +82,4 @@ export class DashBoardComponent {
 
 }
 
-}
+
